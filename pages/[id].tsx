@@ -7,6 +7,7 @@ import { Layout } from '../components/Layout'
 import Modal from '../components/Modal'
 import { server } from '../config'
 import { Page } from '../types/page'
+import TrackedLink from '../components/TrackedLink'
 
 interface Link {
   id: number
@@ -27,7 +28,10 @@ interface Props {
 
 const Links: Page<Props> = ({ data }) => {
   const [open, setOpen] = useState(false)
-  const [explicitLinkURL, setExplicitLinkURL] = useState('')
+  const [explicitLinkData, setExplicitLinkData] = useState({
+    href: '',
+    linkId: 0,
+  })
 
   return (
     <div
@@ -63,23 +67,21 @@ const Links: Page<Props> = ({ data }) => {
               className="mt-5 w-full rounded-md border-2 border-white text-center"
             >
               {link.explicit ? (
-                <>
-                  <div
-                    className="cursor-pointer px-8 py-4 transition-colors hover:bg-white hover:text-black"
-                    onClick={() => {
-                      setOpen(true)
-                      setExplicitLinkURL(link.href)
-                    }}
-                  >
-                    {link.content}
-                  </div>
-                </>
+                <div
+                  className="cursor-pointer px-8 py-4 transition-colors hover:bg-white hover:text-black"
+                  onClick={() => {
+                    setOpen(true)
+                    setExplicitLinkData({ href: link.href, linkId: link.id })
+                  }}
+                >
+                  {link.content}
+                </div>
               ) : (
-                <a href={link.href}>
+                <TrackedLink href={link.href} linkId={link.id} uid={data.uid}>
                   <div className="cursor-pointer px-8 py-4 transition-colors hover:bg-white hover:text-black">
                     {link.content}
                   </div>
-                </a>
+                </TrackedLink>
               )}
             </motion.div>
           ))}
@@ -92,12 +94,15 @@ const Links: Page<Props> = ({ data }) => {
             Ten link może zawierać treści nieodpowiednie dla osób
             niepełnoletnich.
           </div>
-          <a
-            href={explicitLinkURL}
+          <TrackedLink
+            href={explicitLinkData.href}
+            linkId={explicitLinkData.linkId}
+            uid={data.uid}
+            setIsOpen={setOpen}
             className="mt-8 rounded-md border-2 border-black px-8 py-3 text-center transition-colors hover:bg-black hover:text-white"
           >
             Przejdź
-          </a>
+          </TrackedLink>
         </div>
       </Modal>
     </div>

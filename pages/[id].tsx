@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from 'next'
+import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import { GetStaticPaths } from 'next'
 import Image from 'next/image'
 import React, { useState } from 'react'
@@ -104,19 +104,7 @@ const Links: Page<Props> = ({ data }) => {
   )
 }
 
-// You should use getStaticPaths if you’re statically pre-rendering pages that use dynamic routes
-
-export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  const arr: string[] = ['lachimek', 'kntp']
-  const paths = arr.map((param) => {
-    return {
-      params: { id: param },
-    }
-  })
-  return { paths, fallback: false }
-}
-
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await fetch(`${server}/api/user/${context.params!.id}`, {
     method: 'GET',
     headers: {
@@ -124,6 +112,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
     },
   })
   const data = await res.json()
+
+  if (data.error) {
+    return {
+      redirect: {
+        destination: `/?error_message=${data.message}`,
+        permanent: false,
+      },
+    }
+  }
 
   // Pass post data to the page via props
   return {

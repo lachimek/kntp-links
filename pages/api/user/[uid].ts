@@ -83,7 +83,7 @@ export default function handler(
     const result = sample.find((item) => item.uid === uid)
 
     if (result === undefined)
-      return res.status(404).json({ error: true, message: 'Nie znaleziono' })
+      return res.status(404).json({ error: true, message: 'user_not_found' })
 
     res.status(200).json(result)
   } else {

@@ -117,7 +117,15 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const res = await fetch(`${server}/api/user/${context.params!.id}`)
+  const res = await fetch(
+    `http://localhost:3000/api/user/${context.params!.id}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  )
   const data = await res.json()
 
   // Pass post data to the page via props

@@ -38,6 +38,7 @@ const TrackedLink: React.FC<Props> = ({
         rel="noopener"
         className={className}
         onClick={() => trackLink(linkId)}
+        onAuxClick={() => trackLink(linkId)}
       >
         {children}
       </a>
@@ -49,6 +50,7 @@ const TrackedLink: React.FC<Props> = ({
         target="_blank"
         rel="noopener"
         onClick={() => trackLink(linkId)}
+        onAuxClick={() => trackLink(linkId)}
       >
         {children}
       </a>

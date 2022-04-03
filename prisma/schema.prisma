@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./database.db"
+}
+
+model Link {
+  id              String  @id @default(uuid())
+  content         String
+  href            String
+  explicit        Boolean @default(false)
+  numberOfEntries Int     @default(0)
+  page            Page?   @relation(fields: [pageId], references: [id])
+  pageId          String?
+}
+
+model Page {
+  id                 String @id @default(uuid())
+  pageName           String
+  profilePictureLink String
+  userName           String
+  description        String
+  links              Link[]
+}

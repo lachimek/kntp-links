@@ -3,9 +3,9 @@ import { GetStaticPaths } from 'next'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { prisma } from '../db'
 import { Layout } from '../components/Layout'
 import Modal from '../components/Modal'
-import { server } from '../config'
 import { Page } from '../types/page'
 import TrackedLink from '../components/TrackedLink'
 
@@ -18,8 +18,8 @@ interface Link {
 
 interface Props {
   data: {
-    uid: string
-    profilePicture: string
+    id: string
+    profilePictureLink: string
     userName: string
     description: string
     links: Link[]
@@ -40,7 +40,7 @@ const Links: Page<Props> = ({ data }) => {
     >
       <div className="flex flex-col items-center">
         <Image
-          src={data.profilePicture}
+          src={data.profilePictureLink}
           className="rounded-full"
           width="100px"
           height="100px"
@@ -77,7 +77,7 @@ const Links: Page<Props> = ({ data }) => {
                   {link.content}
                 </div>
               ) : (
-                <TrackedLink href={link.href} linkId={link.id} uid={data.uid}>
+                <TrackedLink href={link.href} linkId={link.id} uid={data.id}>
                   <div className="cursor-pointer px-8 py-4 transition-colors hover:bg-white hover:text-black">
                     {link.content}
                   </div>
@@ -97,7 +97,7 @@ const Links: Page<Props> = ({ data }) => {
           <TrackedLink
             href={explicitLinkData.href}
             linkId={explicitLinkData.linkId}
-            uid={data.uid}
+            uid={data.id}
             setIsOpen={setOpen}
             className="mt-8 rounded-md border-2 border-black px-8 py-3 text-center transition-colors hover:bg-black hover:text-white"
           >
@@ -110,18 +110,20 @@ const Links: Page<Props> = ({ data }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(`${server}/api/user/${context.params!.id}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
+  const pageName = context.params!.id as string
+  const data = await prisma.page.findFirst({
+    where: {
+      pageName: pageName,
+    },
+    include: {
+      links: true,
     },
   })
-  const data = await res.json()
 
-  if (data.error) {
+  if (!data) {
     return {
       redirect: {
-        destination: `/?error_message=${data.message}`,
+        destination: `/?error_message=user_not_found`,
         permanent: false,
       },
     }

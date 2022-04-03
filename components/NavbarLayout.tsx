@@ -23,7 +23,7 @@ export const NavbarLayout: React.FC = (props) => {
               Zalogowano jako {session.user?.name}
             </h1>
             <a
-              href="/links"
+              href="/panel/links"
               className="mr-4 rounded-md border-2 border-white px-4 py-2 text-center transition-colors hover:bg-white hover:text-black"
             >
               Moje linki
@@ -36,7 +36,7 @@ export const NavbarLayout: React.FC = (props) => {
             </a>
             <button
               className="rounded-md border-2 border-white px-4 py-2 text-center transition-colors hover:bg-white hover:text-black"
-              onClick={() => signOut()}
+              onClick={() => signOut({ callbackUrl: window.location.origin })}
             >
               Wyloguj
             </button>

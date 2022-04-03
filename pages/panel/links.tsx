@@ -1,9 +1,9 @@
 import { GetServerSideProps } from 'next'
 import Image from 'next/image'
 import { getSession } from 'next-auth/react'
-import { NavbarLayout } from '../components/NavbarLayout'
-import { Page } from '../types/page'
-import prisma from '../db'
+import { NavbarLayout } from '../../components/NavbarLayout'
+import { Page } from '../../types/page'
+import prisma from '../../db'
 
 interface IPageData {
   id: string
@@ -49,6 +49,16 @@ const Links: Page<Props> = ({ data }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/?error_message=not_logged_in',
+        permanent: false,
+      },
+    }
+  }
+
   const data = await prisma.user.findFirst({
     where: {
       email: session!.user!.email,

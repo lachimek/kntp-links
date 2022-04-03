@@ -1,23 +1,16 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import { NavbarLayout } from '../components/NavbarLayout'
+import { Page } from '../types/page'
 
-const Home: NextPage = () => {
+const Home: Page = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-night py-8 text-white">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className="flex w-full flex-1 flex-col items-center px-20"></main>
-
-      <footer className="flex h-2 w-full justify-end pr-4 ">
-        <h1 className="opacity-20 hover:opacity-100">
-          Made with ❤️ by Lachimek
-        </h1>
-      </footer>
+    <div className="flex w-full justify-between px-8 pt-4">
+      <span>Strona domowa</span>
     </div>
   )
+}
+
+Home.getLayout = function getLayout(page) {
+  return <NavbarLayout>{page}</NavbarLayout>
 }
 
 export default Home

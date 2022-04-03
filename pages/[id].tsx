@@ -3,8 +3,8 @@ import { GetStaticPaths } from 'next'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { prisma } from '../db'
-import { Layout } from '../components/Layout'
+import prisma from '../db'
+import { GuestLayout } from '../components/GuestLayout'
 import Modal from '../components/Modal'
 import { Page } from '../types/page'
 import TrackedLink from '../components/TrackedLink'
@@ -38,7 +38,7 @@ const Links: Page<Props> = ({ data }) => {
       className="flex w-full flex-col items-center"
       onClick={() => open && setOpen(false)}
     >
-      <div className="flex flex-col items-center">
+      <div className="mt-8 flex flex-col items-center">
         <Image
           src={data.profilePictureLink}
           className="rounded-full"
@@ -138,7 +138,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 Links.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>
+  return <GuestLayout>{page}</GuestLayout>
 }
 
 export default Links

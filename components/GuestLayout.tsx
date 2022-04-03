@@ -1,8 +1,8 @@
 import Head from 'next/head'
 
-export const Layout: React.FC = (props) => {
+export const GuestLayout: React.FC = (props) => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-night py-8 text-white">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-night text-white">
       <Head>
         <title>KNTP-LINKS</title>
         <link rel="icon" href="/favicon.ico" />
@@ -12,7 +12,7 @@ export const Layout: React.FC = (props) => {
         {props.children}
       </main>
 
-      <footer className="flex h-2 w-full justify-end pr-4 ">
+      <footer className="flex w-full justify-end pr-4 pb-4 ">
         <h1 className="opacity-20 transition-opacity hover:opacity-100">
           Made with ❤️ by Lachimek
         </h1>

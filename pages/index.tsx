@@ -1,5 +1,6 @@
-import { NavbarLayout } from '../components/NavbarLayout'
-import { Page } from '../types/page'
+import { GetServerSideProps } from 'next'
+import { getSession } from 'next-auth/react'
+import { Page } from 'types/page'
 
 const Home: Page = () => {
   return (
@@ -9,8 +10,19 @@ const Home: Page = () => {
   )
 }
 
-Home.getLayout = function getLayout(page) {
-  return <NavbarLayout>{page}</NavbarLayout>
+// Home.getLayout = function getLayout(page) {
+//   return <NavbarLayout>{page}</NavbarLayout>
+// }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context)
+
+  return {
+    props: {
+      session: session,
+      showNavbar: true,
+    },
+  }
 }
 
 export default Home

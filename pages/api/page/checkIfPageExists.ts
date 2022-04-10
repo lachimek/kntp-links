@@ -1,31 +1,35 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from 'db'
 
-type TrackReponse = {
+interface ErrorResponse {
   error: boolean
   message: string
 }
 
+interface PageData {
+  pageUrl: string
+}
+
 interface TrackNextApiRequest extends NextApiRequest {
-  body: {
-    linkId: string
-  }
+  body: PageData
 }
 
 export default async function handler(
   req: TrackNextApiRequest,
-  res: NextApiResponse<TrackReponse>
+  res: NextApiResponse<ErrorResponse>
 ) {
   if (req.method === 'POST') {
-    const { linkId } = req.body
-    const updatedLink = await prisma.link.update({
-      where: { id: linkId },
-      data: { numberOfEntries: { increment: 1 } },
+    console.log(req.body)
+    const { pageUrl } = req.body
+
+    const found = await prisma.page.findFirst({
+      where: { pageName: pageUrl },
     })
-    if (updatedLink) {
+
+    if (!found) {
       res.status(200).json({ error: false, message: 'ok' })
     } else {
-      res.status(200).json({ error: true, message: 'could_not_update_link' })
+      res.status(200).json({ error: true, message: 'page_url_exists' })
     }
   } else {
     res.status(200).json({ error: true, message: 'Halo halo!' })

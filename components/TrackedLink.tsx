@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { server } from '../config'
+import { server } from 'config'
 
 interface Props {
   href: string

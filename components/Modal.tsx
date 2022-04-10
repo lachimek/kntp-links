@@ -6,6 +6,7 @@ interface Props {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
   children: ReactNode
   headerText: string
+  onClose?: Function
 }
 
 const Modal: React.FC<Props> = ({
@@ -13,11 +14,13 @@ const Modal: React.FC<Props> = ({
   setIsOpen,
   children,
   headerText,
+  onClose,
 }) => {
   useEffect(() => {
     const close = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setIsOpen(false)
+        if (onClose) onClose()
       }
     }
     window.addEventListener('keydown', close)
@@ -45,14 +48,17 @@ const Modal: React.FC<Props> = ({
           initial="hidden"
           animate="visible"
           exit="hidden"
-          className="fixed top-[30%] z-20 h-auto max-w-sm rounded-md bg-white p-4 text-black drop-shadow-xl sm:max-w-xl lg:left-[50%] lg:translate-x-[-50%]"
+          className="fixed top-[30%] z-20 h-auto max-w-sm rounded-md bg-white px-4 py-2 text-black drop-shadow-xl sm:max-w-xl lg:left-[50%] lg:translate-x-[-50%]"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex justify-between pb-2">
-            <h1 className="text-xl">{headerText}</h1>
+          <div className="flex items-baseline justify-between pb-2">
+            <h1 className="text-xl ">{headerText}</h1>
             <button
               className="rounded-xl py-2 px-3 transition-colors hover:bg-black hover:text-white"
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => {
+                setIsOpen(!isOpen)
+                if (onClose) onClose()
+              }}
             >
               &#10005;
             </button>

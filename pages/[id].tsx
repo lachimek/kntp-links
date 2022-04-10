@@ -3,11 +3,10 @@ import { GetStaticPaths } from 'next'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import prisma from '../db'
-import { GuestLayout } from '../components/GuestLayout'
-import Modal from '../components/Modal'
-import { Page } from '../types/page'
-import TrackedLink from '../components/TrackedLink'
+import prisma from 'db'
+import Modal from 'components/Modal'
+import { Page } from 'types/page'
+import TrackedLink from 'components/TrackedLink'
 
 interface Link {
   id: number
@@ -39,11 +38,10 @@ const Links: Page<Props> = ({ data }) => {
       onClick={() => open && setOpen(false)}
     >
       <div className="mt-8 flex flex-col items-center">
-        <Image
+        <img
           src={data.profilePictureLink}
-          className="rounded-full"
-          width="100px"
-          height="100px"
+          alt="Thumbnail of page"
+          className="h-[100px] w-[100px] rounded-full"
         />
         <h1 className="pt-4 text-xl ">{data.userName}</h1>
         <h1 className="text-sm opacity-50 ">{data.description}</h1>
@@ -135,10 +133,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       data,
     },
   }
-}
-
-Links.getLayout = function getLayout(page) {
-  return <GuestLayout>{page}</GuestLayout>
 }
 
 export default Links

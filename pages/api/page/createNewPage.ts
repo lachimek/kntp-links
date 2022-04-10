@@ -54,11 +54,13 @@ export default async function handler(
         })
         if (!pages) {
           try {
-            const data = fs.readFileSync(files.file.path)
-            const { cid } = await client.add(data)
-            const imgPath = cid.toV1().toString()
+            //const data = fs.readFileSync(files.file.path)
+            //const { cid } = await client.add(data)
+            //const imgPath = cid.toV1().toString()
+            const imgPath = 'testest'
             const url = `https://${imgPath}.ipfs.infura-ipfs.io`
-            if (imgPath !== '') {
+            //if (imgPath !== '') {
+            if (true) {
               const user = await prisma.user.update({
                 where: { email: fields.userEmail },
                 include: { pages: true },

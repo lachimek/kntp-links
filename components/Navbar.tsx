@@ -2,8 +2,8 @@ import { Session } from 'next-auth'
 import { signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
-import { GiHamburgerMenu } from '@react-icons/all-files/gi/GiHamburgerMenu'
-import { AiOutlineArrowRight } from '@react-icons/all-files/ai/AiOutlineArrowRight'
+import { GiHamburgerMenu } from 'react-icons/gi'
+import { AiOutlineArrowRight } from 'react-icons/ai'
 import useOutsideClick from 'hooks/useOutsideClick'
 
 interface Props {

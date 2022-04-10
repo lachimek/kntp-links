@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
-import { MdPhotoCamera } from '@react-icons/all-files/md/MdPhotoCamera'
+import { MdPhotoCamera } from 'react-icons/md'
 import { Page } from 'types/page'
 import Modal from 'components/Modal'
 import { AnimatePresence, motion } from 'framer-motion'

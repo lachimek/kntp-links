@@ -42,14 +42,6 @@
   "resolved" "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.7.4.tgz"
   "version" "0.7.4"
 
-"@ipld/dag-cbor@^6.0.3":
-  "integrity" "sha512-Vm3VTSTwlmGV92a3C5aeY+r2A18zbH2amehNhsX8PBa3muXICaWrN8Uri85A5hLH7D7ElhE8PdjxD6kNqUmTZA=="
-  "resolved" "https://registry.npmjs.org/@ipld/dag-cbor/-/dag-cbor-6.0.15.tgz"
-  "version" "6.0.15"
-  dependencies:
-    "cborg" "^1.5.4"
-    "multiformats" "^9.5.4"
-
 "@ipld/dag-cbor@^7.0.0":
   "integrity" "sha512-XqG8VEzHjQDC/Qcy5Gyf1kvAav5VuAugc6c7VtdaRLI+3d8lJrUP3F76GYJNNXuEnRZ58cCBnNNglkIGTdg1+A=="
   "resolved" "https://registry.npmjs.org/@ipld/dag-cbor/-/dag-cbor-7.0.1.tgz"
@@ -184,6 +176,11 @@
   "resolved" "https://registry.npmjs.org/@protobufjs/utf8/-/utf8-1.1.0.tgz"
   "version" "1.1.0"
 
+"@react-icons/all-files@^4.1.0":
+  "integrity" "sha512-hxBI2UOuVaI3O/BhQfhtb4kcGn9ft12RWAFVMUeNjqqhLsHvFtzIkFaptBJpFDANTKoDfdVoHTKZDlwKCACbMQ=="
+  "resolved" "https://registry.npmjs.org/@react-icons/all-files/-/all-files-4.1.0.tgz"
+  "version" "4.1.0"
+
 "@types/body-parser@*":
   "integrity" "sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g=="
   "resolved" "https://registry.npmjs.org/@types/body-parser/-/body-parser-1.19.2.tgz"
@@ -294,6 +291,13 @@
     "@types/mime" "^1"
     "@types/node" "*"
 
+"abort-controller@*", "abort-controller@^3.0.0":
+  "integrity" "sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg=="
+  "resolved" "https://registry.npmjs.org/abort-controller/-/abort-controller-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "event-target-shim" "^5.0.0"
+
 "acorn-node@^1.6.1":
   "integrity" "sha512-8mt+fslDufLYntIoPAaIMUe/lrbrehIiwmR3t2k9LljIzoigEPF27eLk2hy8zSGzmR/ogr7zbRKINMo1u0yh5A=="
   "resolved" "https://registry.npmjs.org/acorn-node/-/acorn-node-1.8.2.tgz"
@@ -326,6 +330,14 @@
   "version" "4.3.0"
   dependencies:
     "color-convert" "^2.0.1"
+
+"any-signal@^2.1.2":
+  "integrity" "sha512-B+rDnWasMi/eWcajPcCWSlYc7muXOrcYrqgyzcdKisl2H/WTlQ0gip1KyQfr0ZlxJdsuWCj/LWwQm7fhyhRfIQ=="
+  "resolved" "https://registry.npmjs.org/any-signal/-/any-signal-2.1.2.tgz"
+  "version" "2.1.2"
+  dependencies:
+    "abort-controller" "^3.0.0"
+    "native-abort-controller" "^1.0.3"
 
 "any-signal@^3.0.0":
   "integrity" "sha512-xgZgJtKEa9YmDqXodIgl7Fl1C8yNXr8w6gXjqK3LW4GcEiYT+6AQfJSE/8SPsEpLLmcvbv8YU+qet94UewHxqg=="
@@ -525,14 +537,6 @@
   "resolved" "https://registry.npmjs.org/csstype/-/csstype-3.0.11.tgz"
   "version" "3.0.11"
 
-"dag-jose@^1.0.0":
-  "integrity" "sha512-U0b/YsIPBp6YZNTFrVjwLZAlY3qGRxZTIEcM/CcQmrVrCWq9MWQq9pheXVSPLIhF4SNwzp2SikPva4/BIrJY+g=="
-  "resolved" "https://registry.npmjs.org/dag-jose/-/dag-jose-1.0.0.tgz"
-  "version" "1.0.0"
-  dependencies:
-    "@ipld/dag-cbor" "^6.0.3"
-    "multiformats" "^9.0.2"
-
 "debug@^4.1.1", "debug@^4.3.1":
   "integrity" "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ=="
   "resolved" "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz"
@@ -613,6 +617,11 @@
   "integrity" "sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ="
   "resolved" "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz"
   "version" "1.0.5"
+
+"event-target-shim@^5.0.0":
+  "integrity" "sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ=="
+  "resolved" "https://registry.npmjs.org/event-target-shim/-/event-target-shim-5.0.1.tgz"
+  "version" "5.0.1"
 
 "fast-fifo@^1.0.0":
   "integrity" "sha512-Kl29QoNbNvn4nhDsLYjyIAaIqaJB6rBx5p3sL9VjaefJ+eMFBWVZiaoguaoZfzEKr5RhAti0UgM8703akGPJ6g=="
@@ -771,26 +780,26 @@
   "resolved" "https://registry.npmjs.org/ip-regex/-/ip-regex-4.3.0.tgz"
   "version" "4.3.0"
 
-"ipfs-core-types@^0.10.1":
-  "integrity" "sha512-s5+kXXcjkIdWPHblrE0TyiKxROQdL7zfkVI7FpEEwv5rtHCjpI0I4vKSzziZLLzLXf3a2F1qtscOnlaT0ruWBw=="
-  "resolved" "https://registry.npmjs.org/ipfs-core-types/-/ipfs-core-types-0.10.1.tgz"
-  "version" "0.10.1"
+"ipfs-core-types@^0.9.0":
+  "integrity" "sha512-VJ8vJSHvI1Zm7/SxsZo03T+zzpsg8pkgiIi5hfwSJlsrJ1E2v68QPlnLshGHUSYw89Oxq0IbETYl2pGTFHTWfg=="
+  "resolved" "https://registry.npmjs.org/ipfs-core-types/-/ipfs-core-types-0.9.0.tgz"
+  "version" "0.9.0"
   dependencies:
     "interface-datastore" "^6.0.2"
     "multiaddr" "^10.0.0"
-    "multiformats" "^9.5.1"
+    "multiformats" "^9.4.13"
 
-"ipfs-core-utils@^0.14.1":
-  "integrity" "sha512-Zm5Ou6zd5W5COaVpE2v7a7QS0KhlYJ4CakxVgoIJWWXSdexLt0M3Z3dTWMlFygWu6QRaKyOURZPdOlPWfqBThQ=="
-  "resolved" "https://registry.npmjs.org/ipfs-core-utils/-/ipfs-core-utils-0.14.1.tgz"
-  "version" "0.14.1"
+"ipfs-core-utils@^0.13.0":
+  "integrity" "sha512-HP5EafxU4/dLW3U13CFsgqVO5Ika8N4sRSIb/dTg16NjLOozMH31TXV0Grtu2ZWo1T10ahTzMvrfT5f4mhioXw=="
+  "resolved" "https://registry.npmjs.org/ipfs-core-utils/-/ipfs-core-utils-0.13.0.tgz"
+  "version" "0.13.0"
   dependencies:
-    "any-signal" "^3.0.0"
+    "any-signal" "^2.1.2"
     "blob-to-it" "^1.0.1"
     "browser-readablestream-to-it" "^1.0.1"
     "debug" "^4.1.1"
     "err-code" "^3.0.1"
-    "ipfs-core-types" "^0.10.1"
+    "ipfs-core-types" "^0.9.0"
     "ipfs-unixfs" "^6.0.3"
     "ipfs-utils" "^9.0.2"
     "it-all" "^1.0.4"
@@ -800,32 +809,33 @@
     "merge-options" "^3.0.4"
     "multiaddr" "^10.0.0"
     "multiaddr-to-uri" "^8.0.0"
-    "multiformats" "^9.5.1"
+    "multiformats" "^9.4.13"
     "nanoid" "^3.1.23"
     "parse-duration" "^1.0.0"
-    "timeout-abort-controller" "^3.0.0"
+    "timeout-abort-controller" "^2.0.0"
     "uint8arrays" "^3.0.0"
 
-"ipfs-http-client@^56.0.1":
-  "integrity" "sha512-U0sUyGZndcIluMJL3gDdCSgF7RwShDklJJxfDf9IRcbO72hqSJsib4amYzqcqfetft6vYa8uRIoJFEIWndHwrg=="
-  "resolved" "https://registry.npmjs.org/ipfs-http-client/-/ipfs-http-client-56.0.1.tgz"
-  "version" "56.0.1"
+"ipfs-http-client@55.0.0":
+  "integrity" "sha512-GpvEs7C7WL9M6fN/kZbjeh4Y8YN7rY8b18tVWZnKxRsVwM25cIFrRI8CwNt3Ugin9yShieI3i9sPyzYGMrLNnQ=="
+  "resolved" "https://registry.npmjs.org/ipfs-http-client/-/ipfs-http-client-55.0.0.tgz"
+  "version" "55.0.0"
   dependencies:
     "@ipld/dag-cbor" "^7.0.0"
     "@ipld/dag-json" "^8.0.1"
     "@ipld/dag-pb" "^2.1.3"
-    "any-signal" "^3.0.0"
-    "dag-jose" "^1.0.0"
+    "abort-controller" "^3.0.0"
+    "any-signal" "^2.1.2"
     "debug" "^4.1.1"
     "err-code" "^3.0.1"
-    "ipfs-core-types" "^0.10.1"
-    "ipfs-core-utils" "^0.14.1"
+    "ipfs-core-types" "^0.9.0"
+    "ipfs-core-utils" "^0.13.0"
     "ipfs-utils" "^9.0.2"
     "it-first" "^1.0.6"
     "it-last" "^1.0.4"
     "merge-options" "^3.0.4"
     "multiaddr" "^10.0.0"
-    "multiformats" "^9.5.1"
+    "multiformats" "^9.4.13"
+    "native-abort-controller" "^1.0.3"
     "parse-duration" "^1.0.0"
     "stream-to-it" "^0.2.2"
     "uint8arrays" "^3.0.0"
@@ -1061,7 +1071,7 @@
     "uint8arrays" "^3.0.0"
     "varint" "^6.0.0"
 
-"multiformats@^9.0.2", "multiformats@^9.4.2", "multiformats@^9.4.5", "multiformats@^9.5.1", "multiformats@^9.5.4":
+"multiformats@^9.4.13", "multiformats@^9.4.2", "multiformats@^9.4.5", "multiformats@^9.5.4":
   "integrity" "sha512-fCCB6XMrr6CqJiHNjfFNGT0v//dxOBMrOMqUIzpPc/mmITweLEyhvMpY9bF+jZ9z3vaMAau5E8B68DW77QMXkg=="
   "resolved" "https://registry.npmjs.org/multiformats/-/multiformats-9.6.4.tgz"
   "version" "9.6.4"
@@ -1070,6 +1080,11 @@
   "integrity" "sha512-CuHBogktKwpm5g2sRgv83jEy2ijFzBwMoYA60orPDR7ynsLijJDqgsi4RDGj3OJpy3Ieb+LYwiRmIOGyytgITA=="
   "resolved" "https://registry.npmjs.org/nanoid/-/nanoid-3.3.2.tgz"
   "version" "3.3.2"
+
+"native-abort-controller@^1.0.3", "native-abort-controller@^1.0.4":
+  "integrity" "sha512-zp8yev7nxczDJMoP6pDxyD20IU0T22eX8VwN2ztDccKvSZhRaV33yP1BGwKSZfXuqWUzsXopVFjBdau9OOAwMQ=="
+  "resolved" "https://registry.npmjs.org/native-abort-controller/-/native-abort-controller-1.0.4.tgz"
+  "version" "1.0.4"
 
 "native-fetch@^3.0.0":
   "integrity" "sha512-G3Z7vx0IFb/FQ4JxvtqGABsOTIqRWvgQz6e+erkB+JJD6LrszQtMozEHI4EkmgZQvnGHrpLVzUWk7t4sJCIkVw=="
@@ -1354,11 +1369,6 @@
     "object-assign" "^4.1.1"
     "scheduler" "^0.20.2"
 
-"react-icons@^4.3.1":
-  "integrity" "sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ=="
-  "resolved" "https://registry.npmjs.org/react-icons/-/react-icons-4.3.1.tgz"
-  "version" "4.3.1"
-
 "react-native-fetch-api@^2.0.0":
   "integrity" "sha512-GOA8tc1EVYLnHvma/TU9VTgLOyralO7eATRuCDchQveXW9Fr9vXygyq9iwqmM7YRZ8qRJfEt9xOS7OYMdJvRFw=="
   "resolved" "https://registry.npmjs.org/react-native-fetch-api/-/react-native-fetch-api-2.0.0.tgz"
@@ -1529,11 +1539,13 @@
     "quick-lru" "^5.1.1"
     "resolve" "^1.22.0"
 
-"timeout-abort-controller@^3.0.0":
-  "integrity" "sha512-O3e+2B8BKrQxU2YRyEjC/2yFdb33slI22WRdUaDx6rvysfi9anloNZyR2q0l6LnePo5qH7gSM7uZtvvwZbc2yA=="
-  "resolved" "https://registry.npmjs.org/timeout-abort-controller/-/timeout-abort-controller-3.0.0.tgz"
-  "version" "3.0.0"
+"timeout-abort-controller@^2.0.0":
+  "integrity" "sha512-2FAPXfzTPYEgw27bQGTHc0SzrbmnU2eso4qo172zMLZzaGqeu09PFa5B2FCUHM1tflgRqPgn5KQgp6+Vex4uNA=="
+  "resolved" "https://registry.npmjs.org/timeout-abort-controller/-/timeout-abort-controller-2.0.0.tgz"
+  "version" "2.0.0"
   dependencies:
+    "abort-controller" "^3.0.0"
+    "native-abort-controller" "^1.0.4"
     "retimer" "^3.0.0"
 
 "to-regex-range@^5.0.1":

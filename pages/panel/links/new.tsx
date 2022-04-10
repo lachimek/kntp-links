@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
-import { MdOutlineAddAPhoto } from 'react-icons/md'
+import { MdPhotoCamera } from '@react-icons/all-files/md/MdPhotoCamera'
 import { Page } from 'types/page'
 import Modal from 'components/Modal'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -86,7 +86,7 @@ const NewLinks: Page<Props> = ({ session }) => {
                 htmlFor="image-input"
                 className="flex h-[100px] w-[100px] items-center justify-center rounded-full bg-gray-500"
               >
-                <MdOutlineAddAPhoto className="h-8 w-8 cursor-pointer" />
+                <MdPhotoCamera className="h-8 w-8 cursor-pointer" />
               </label>
             </>
           ) : (

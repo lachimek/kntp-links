@@ -53,29 +53,34 @@ export default async function handler(
           where: { pageName: fields.pageUrl },
         })
         if (!pages) {
-          const data = fs.readFileSync(files.file.path)
-          const { cid } = await client.add(data)
-          const imgPath = cid.toV1().toString()
-          const url = `https://${imgPath}.ipfs.infura-ipfs.io`
-          if (imgPath !== '') {
-            const user = await prisma.user.update({
-              where: { email: fields.userEmail },
-              include: { pages: true },
-              data: {
-                pages: {
-                  create: [
-                    {
-                      pageName: fields.pageUrl,
-                      profilePictureLink: url,
-                      userName: fields.pageName,
-                      description: fields.pageDescription,
-                    },
-                  ],
+          try {
+            const data = fs.readFileSync(files.file.path)
+            const { cid } = await client.add(data)
+            const imgPath = cid.toV1().toString()
+            const url = `https://${imgPath}.ipfs.infura-ipfs.io`
+            if (imgPath !== '') {
+              const user = await prisma.user.update({
+                where: { email: fields.userEmail },
+                include: { pages: true },
+                data: {
+                  pages: {
+                    create: [
+                      {
+                        pageName: fields.pageUrl,
+                        profilePictureLink: url,
+                        userName: fields.pageName,
+                        description: fields.pageDescription,
+                      },
+                    ],
+                  },
                 },
-              },
-            })
-          } else {
-            res.status(200).json({ error: true, message: 'page_url_exists' })
+              })
+            } else {
+              res.status(200).json({ error: true, message: 'page_url_exists' })
+            }
+          } catch (err) {
+            console.error(err)
+            res.status(200).json({ error: true, message: 'ipfs_error' })
           }
         }
       }

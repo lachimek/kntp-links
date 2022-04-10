@@ -31,7 +31,7 @@ const Links: Page<Props> = ({ data }) => {
     })
     const json = await response.json()
     setPages(json.message)
-    console.log(json)
+    console.log('allLinks', json)
   }
   return (
     <div className="mt-8 flex flex-col items-center">

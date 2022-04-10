@@ -50,19 +50,20 @@ const NewLinks: Page<Props> = ({ session }) => {
       body.append('pageDescription', pageDescription)
       body.append('pageUrl', pageUrl)
       body.append('userEmail', userEmail)
-
-      console.log('body', body)
-
-      const response = await fetch(`${server}/api/page/createNewPage`, {
-        method: 'POST',
-        body,
-      })
-      const json = await response.json()
-      if (!json.error)
-        router.push({
-          pathname: './',
+      try {
+        const response = await fetch(`${server}/api/page/createNewPage`, {
+          method: 'POST',
+          body,
         })
-      console.log(json)
+        const json = await response.json()
+        if (!json.error)
+          router.push({
+            pathname: './',
+          })
+        console.log('newLinks', json)
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 
@@ -140,7 +141,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      session: await getSession(context),
+      session: session,
       showNavbar: true,
     },
   }

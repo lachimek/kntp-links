@@ -9,6 +9,8 @@ import prisma from 'db'
 import { AnimatePresence, motion } from 'framer-motion'
 import Modal from 'components/Modal'
 import { server } from 'config'
+import { AiOutlineEdit } from 'react-icons/ai'
+import { BsTrash } from 'react-icons/bs'
 
 const prismaPageWithLinks = Prisma.validator<Prisma.PageArgs>()({
   include: { links: true },
@@ -142,6 +144,7 @@ const Edit: Page<Props> = ({ session, data }) => {
           className="w-full appearance-none bg-transparent text-center text-xl focus:outline-none"
           maxLength={30}
           defaultValue={data.userName}
+          disabled
         />
         <textarea
           className="w-full resize-none appearance-none bg-transparent text-center text-sm opacity-50 focus:outline-none"
@@ -150,6 +153,7 @@ const Edit: Page<Props> = ({ session, data }) => {
           wrap={'hard'}
           maxLength={200}
           defaultValue={data.description}
+          disabled
         ></textarea>
         {/* <div className="flex flex-col">
           <button
@@ -160,39 +164,48 @@ const Edit: Page<Props> = ({ session, data }) => {
           </button>
         </div> */}
       </div>
-      <div className="mt-2 flex w-64 flex-col items-center">
+      <div className="mt-2 flex w-96 flex-col items-center">
         <AnimatePresence>
           {links.map((link, index) => (
-            <motion.div
-              variants={{
-                start: { y: 0, opacity: 0 },
-                animate: (index) => ({
-                  y: [0, 10, 0],
-                  opacity: 1,
-                  transition: { delay: index * 0.1 },
-                }),
-              }}
-              initial="start"
-              animate="animate"
-              custom={index}
-              key={index}
-              className="mt-5 w-full rounded-md border-2 border-white text-center"
-            >
-              <div
-                className="cursor-pointer px-8 py-4 transition-colors hover:bg-white hover:text-black"
-                onClick={() => {
-                  setEditId(link.id)
-                  setLinkFormData(link)
-                  setIsOpen(true)
+            <div className="flex w-96">
+              <motion.div
+                variants={{
+                  start: { y: 0, opacity: 0 },
+                  animate: (index) => ({
+                    y: [0, 10, 0],
+                    opacity: 1,
+                    transition: { delay: index * 0.1 },
+                  }),
                 }}
+                initial="start"
+                animate="animate"
+                custom={index}
+                key={index}
+                className="mt-5 ml-16 w-64 rounded-md border-2 border-white text-center"
               >
-                {link.content}
+                <div className="px-8 py-4 transition-colors hover:bg-white hover:text-black">
+                  {link.content}
+                </div>
+              </motion.div>
+              <div className="mt-5 flex w-16 items-center pl-2">
+                <AiOutlineEdit
+                  className="cursor-pointer text-2xl hover:text-gray-300"
+                  onClick={() => {
+                    setEditId(link.id)
+                    setLinkFormData(link)
+                    setIsOpen(true)
+                  }}
+                />
+                <BsTrash
+                  className="ml-4 cursor-pointer text-2xl text-red-500 hover:text-red-600"
+                  onClick={() => {}}
+                />
               </div>
-            </motion.div>
+            </div>
           ))}
         </AnimatePresence>
         <button
-          className="mt-5 w-full rounded-md border-2 border-white px-8 py-4 text-center transition-colors hover:bg-white hover:text-black"
+          className="mt-5 w-64 rounded-md border-2 border-white px-8 py-4 text-center transition-colors hover:bg-white hover:text-black"
           onClick={() => setIsOpen(true)}
         >
           Nowy link
@@ -288,7 +301,7 @@ const Edit: Page<Props> = ({ session, data }) => {
               className="my-2 rounded-md border-2 border-black px-8 py-3 text-center transition-colors hover:bg-black hover:text-white"
               onClick={handleSubmit}
             >
-              Dodaj Link
+              {editId === '' ? 'Dodaj link' : 'Zapisz edycje'}
             </button>
           </div>
         </div>

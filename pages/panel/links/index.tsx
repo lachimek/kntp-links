@@ -35,7 +35,15 @@ const Links: Page<Props> = ({ data }) => {
   }
   return (
     <div className="mt-8 flex flex-col items-center">
-      <h1 className="mb-8 text-3xl font-bold">MOJE LINKI</h1>
+      {pages.length === 0 && (
+        <h1 className="mb-8 text-3xl font-bold">
+          NIE MASZ JESZCZE ŻADNYCH LINKÓW
+        </h1>
+      )}
+      {pages.length !== 0 && (
+        <h1 className="mb-8 text-3xl font-bold">MOJE LINKI</h1>
+      )}
+
       {pages.map((page) => (
         <div
           className="sm:group mb-6 flex flex-col items-center sm:flex-row"

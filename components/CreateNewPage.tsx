@@ -33,7 +33,7 @@ const CreateNewPage: React.FC<Props> = ({ setPageUrl }) => {
   }
 
   const handleCheckIfAvailable = async () => {
-    if (!containsSpecialChars(fieldData)) {
+    if (!containsSpecialChars(fieldData) && fieldData !== '') {
       const response = await fetch(`${server}/api/page/checkIfPageExists`, {
         method: 'POST',
         headers: {

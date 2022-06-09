@@ -105,10 +105,11 @@ const Edit: Page<Props> = ({ session, data }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id: editId !== '' ? editId : crypto.randomUUID(),
           content: linkFormData.content,
           href: linkFormData.href,
           explicit: linkFormData.explicit,
+          pageId: data.id,
+          linkId: editId,
         }),
       })
       const json = await response.json()
@@ -118,7 +119,21 @@ const Edit: Page<Props> = ({ session, data }) => {
       setIsOpen(false)
     }
   }
-
+  const handleDelete = async (linkId: string) => {
+    const response = await fetch(`${server}/api/page/createNewLink`, {
+      method: 'DELETE',
+      headers: {
+        'page-link-data': JSON.stringify({
+          pageId: data.id,
+          linkId: linkId,
+        }),
+      },
+    })
+    const json = await response.json()
+    console.log(json)
+    setLinks(json)
+    console.log('allLinks', json)
+  }
   const clearFormData = () => {
     setLinkFormData({
       id: '',
@@ -167,7 +182,7 @@ const Edit: Page<Props> = ({ session, data }) => {
       <div className="mt-2 flex w-96 flex-col items-center">
         <AnimatePresence>
           {links.map((link, index) => (
-            <div className="flex w-96">
+            <div className="flex w-96" key={link.id}>
               <motion.div
                 variants={{
                   start: { y: 0, opacity: 0 },
@@ -180,7 +195,6 @@ const Edit: Page<Props> = ({ session, data }) => {
                 initial="start"
                 animate="animate"
                 custom={index}
-                key={index}
                 className="mt-5 ml-16 w-64 rounded-md border-2 border-white text-center"
               >
                 <div className="px-8 py-4 transition-colors hover:bg-white hover:text-black">
@@ -198,7 +212,7 @@ const Edit: Page<Props> = ({ session, data }) => {
                 />
                 <BsTrash
                   className="ml-4 cursor-pointer text-2xl text-red-500 hover:text-red-600"
-                  onClick={() => {}}
+                  onClick={() => handleDelete(link.id)}
                 />
               </div>
             </div>
@@ -321,7 +335,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         id: id as string,
       },
       include: {
-        links: true,
+        links: {
+          where: {
+            deleted: false,
+          },
+        },
       },
     })
   }

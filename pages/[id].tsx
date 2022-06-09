@@ -114,7 +114,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       pageName: pageName,
     },
     include: {
-      links: true,
+      links: {
+        where: {
+          deleted: false,
+        },
+      },
     },
   })
 

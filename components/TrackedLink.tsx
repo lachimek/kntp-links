@@ -33,7 +33,7 @@ const TrackedLink: React.FC<Props> = ({
   if (className)
     return (
       <a
-        href={href}
+        href={'//' + href}
         target="_blank"
         rel="noopener"
         className={className}
@@ -46,7 +46,7 @@ const TrackedLink: React.FC<Props> = ({
   else
     return (
       <a
-        href={href}
+        href={'//' + href}
         target="_blank"
         rel="noopener"
         onClick={() => trackLink(linkId)}

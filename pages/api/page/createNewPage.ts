@@ -1,11 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 const formidable = require('formidable-serverless')
-import { CID, create } from 'ipfs-http-client'
 import fs from 'fs'
 import { v2 as cloudinary } from 'cloudinary'
 import prisma from 'db'
-import path from 'path'
-import { Fields } from 'formidable'
 
 interface ErrorResponse {
   error: boolean

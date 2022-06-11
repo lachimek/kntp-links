@@ -5,7 +5,7 @@ import { BsTrash } from 'react-icons/bs'
 import { Page } from 'types/page'
 import prisma from 'db'
 import { server } from 'config'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 interface IPageData {
   id: string

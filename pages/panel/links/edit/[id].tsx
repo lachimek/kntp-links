@@ -9,6 +9,7 @@ import prisma from 'db'
 import { AnimatePresence, motion } from 'framer-motion'
 import Modal from 'components/Modal'
 import { server } from 'config'
+import toast from 'components/Toast'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { BsTrash } from 'react-icons/bs'
 
@@ -54,6 +55,11 @@ const Edit: Page<Props> = ({ session, data }) => {
   })
   const [links, setLinks] = useState<LinkData[]>(data.links)
   const [editId, setEditId] = useState('')
+
+  const notify = React.useCallback((type, message) => {
+    toast({ type, message })
+  }, [])
+
   const handleSubmit = async () => {
     const expression =
       /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi
@@ -114,6 +120,7 @@ const Edit: Page<Props> = ({ session, data }) => {
       })
       const json = await response.json()
       console.log(json)
+      notify('success', 'Link został utworzony')
       setLinks(json)
       clearFormData()
       setIsOpen(false)
@@ -132,6 +139,7 @@ const Edit: Page<Props> = ({ session, data }) => {
     const json = await response.json()
     console.log(json)
     setLinks(json)
+    notify('success', 'Link został usunięty')
     console.log('allLinks', json)
   }
   const clearFormData = () => {

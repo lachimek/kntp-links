@@ -11,12 +11,12 @@
     "cloudinary": "^1.29.1",
     "formidable-serverless": "^1.1.1",
     "framer-motion": "^6.2.8",
-    "ipfs-http-client": "56.0.1",
     "next": "latest",
     "next-auth": "^4.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "react-toastify": "^9.0.4"
   },
   "devDependencies": {
     "@types/formidable": "^2.0.4",

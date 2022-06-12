@@ -25,6 +25,12 @@ export default async function handler(
   if (req.method === 'POST') {
     const { content, href, explicit, pageId, linkId } = req.body
 
+    let fixedHref = href
+
+    if (href.includes('http://') || href.includes('https://')) {
+      fixedHref = href.split('//')[1]
+    }
+
     console.log(linkId)
 
     if (linkId !== '') {
@@ -33,7 +39,7 @@ export default async function handler(
         where: { id: linkId },
         data: {
           content,
-          href,
+          href: fixedHref,
           explicit,
         },
       })
@@ -46,7 +52,7 @@ export default async function handler(
             create: [
               {
                 content,
-                href,
+                href: fixedHref,
                 explicit,
               },
             ],

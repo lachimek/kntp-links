@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.tiktok-drop-shadow {
+    text-shadow: 2px 2px 0px rgba(37, 244, 238, 1), -2px -2px 0px rgba(254, 44, 85, 1);
+}
